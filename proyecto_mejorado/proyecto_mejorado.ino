@@ -101,6 +101,7 @@ bool guardado_de_datos(int contador){
     return false;
   }
   else{
+    digitalWrite(13,HIGH);
     Serial.println("Los lados son: ");
     for(int i=0; i<cantidad_de_lados; i++){
       Serial.print("\tLado ");
@@ -119,6 +120,7 @@ bool guardado_de_datos(int contador){
 
 void impresion_de_datos(bool condicion_eeprom = false){
   Serial.println();
+  digitalWrite(13,HIGH);
   if(condicion_eeprom==false){
     for(int l=0; l<cantidad_de_lados;l++){
       for(int g=0; g<cantidad_de_datos_recopilados;g++){
