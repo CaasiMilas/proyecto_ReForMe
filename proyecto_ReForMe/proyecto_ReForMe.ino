@@ -101,6 +101,7 @@ bool guardado_de_datos(int contador){
     return false;
   }
   else{
+    int area, perimetro;
     digitalWrite(13,HIGH);
     Serial.println("Los lados son: ");
     for(int i=0; i<cantidad_de_lados; i++){
@@ -109,10 +110,16 @@ bool guardado_de_datos(int contador){
       Serial.print(" valor: ");
       Serial.print(lados[i]);
       Serial.print(" cm ");
+      area *= lados[i];
+      perimetro += lados[i];
         for(int k=0; k<cantidad_de_datos_recopilados; k++){
           eeprom(i+cantidad_de_lados, datos[i][k]);
         }
       }
+     Serial.println("El area es: ");
+     Serial.print(area);
+     Serial.println("El perimetro es: ");
+     Serial.print(perimetro);
      Serial.println();
       return true;
     }
@@ -160,6 +167,9 @@ void setup(){
 
 //Comienza el programa.
 void loop(){
+  if (contador == 0){
+    Serial.println("Comenzando el programa");
+  }
   if (ultrasonico()>0){
     if (condicion){
       Serial.println("Motores apagagos");
